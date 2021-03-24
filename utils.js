@@ -1,7 +1,7 @@
-export function compare(num1, num2) {
-    if (num1 > num2) return 'too high :(';
+export function compareNumbers(guess, correctNumber) {
+    if (guess > correctNumber) return 1;
 
-    if (num1 < num2) return 'too low :(';
+    if (guess < correctNumber) return -1;
 
-    return 'You Win! :D';
+    return 0;
 }
