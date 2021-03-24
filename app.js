@@ -8,6 +8,7 @@ import { compareNumbers } from './utils.js';
 
 const usersGuess = document.getElementById('users-guess');
 const submitButton = document.getElementById('submit-button');
+const resetButton = document.getElementById('reset-button');
 const hint = document.getElementById('hint');
 const remainingTrysText = document.getElementById('remaining-trys');
 let realNumber = Math.ceil(Math.random() * 20);
@@ -15,7 +16,7 @@ let remainingTrysNumber = 3;
 
 
 submitButton.addEventListener('click', () => {
-    let usersNumber = usersGuess.valueAsNumber;
+    let usersNumber = Number(usersGuess.value);
     let isRight = compareNumbers(usersNumber, realNumber);
 
     if (isRight === 1) {
@@ -35,8 +36,17 @@ submitButton.addEventListener('click', () => {
 
     if (remainingTrysNumber === 0) {
         hint.textContent = 'You Lost :(';
-
+        submitButton.style.display = 'none';
     }
 
+});
+
+resetButton.addEventListener('click', () => {
+    remainingTrysNumber = 3;
+    submitButton.style.display = 'block';
+    remainingTrysText.textContent = `${remainingTrysNumber}`;
+    usersGuess.value = '';
+    hint.textContent = 'Next Round';
+    realNumber = Math.ceil(Math.random() * 20);
 });
 
